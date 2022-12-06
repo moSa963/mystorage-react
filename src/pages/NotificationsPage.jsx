@@ -1,4 +1,4 @@
-import { Tab, Tabs } from "@mui/material";
+import { Snackbar, Tab, Tabs } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import NotificationsList from "../components/Notifications/NotificationsList";
@@ -11,9 +11,12 @@ const NotificationsPage = () => {
     const [filter, setFilter] = React.useState(null);
     const [tab, setTab] = React.useState(0);
     const [notifications, setNotifications] = useNotification();
+    const [message, setMessage] = React.useState(null);
 
     return (
         <PageRoot>
+            <Snackbar open={Boolean(message)} onClose={() => setMessage(null)} message={message} />
+
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <SearchBar onChange={setFilter} />
             </Box>
@@ -25,7 +28,7 @@ const NotificationsPage = () => {
                 </Tabs>
             </Box>
 
-            <NotificationsList filter={filter} type={tab === 0 ? "invites" : "requests"} setData={setNotifications} items={notifications}/>
+            <NotificationsList filter={filter} type={tab === 0 ? "invites" : "requests"} setData={setNotifications} items={notifications} setMessage={setMessage} />
         </PageRoot>
     );
 }
