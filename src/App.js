@@ -47,7 +47,7 @@ const App = () => {
                     </Route>
                     <Route path="login" element={<ProtectedRoute guest Element={RegisterPage} />} />
                     <Route path="register" element={<ProtectedRoute guest Element={RegisterPage} />} />
-                    <Route path="verify" element={<ProtectedRoute guest Element={VerifyEmailPage} />} />
+                    <Route path="verify" element={<ProtectedRoute guest unverified Element={VerifyEmailPage} />} />
                     <Route path="error/:code/:text" element={<ErrorPage />} />
                     <Route path="*" element={<Navigate replace to="/error/404/PAGE NOT FOUND" />} />
                 </Routes>
